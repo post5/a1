@@ -13,6 +13,47 @@
 <style>
 .jumbotron{margin-bottom:0px;background-color: #0080FF;color:white;}
 .card{margin-bottom:1rem;border:none;}
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.post {
+  height: 100px;
+  width: 100%;
+  color: #fff;
+  font-size: 24px;
+  line-height: 100px; /* centering text just for view */
+  text-align: center;
+  background-color: grey;
+  margin: 5px;
+  border: 1px solid lightgrey;
+  display: none;
+}
+#loadMore {
+  width: 200px;
+  color: #fff;
+  display: block;
+  text-align: center;
+  margin: 20px auto;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  background-color: blue;
+  transition: .3s;
+}
+#loadMore:hover {
+  color: blue;
+  background-color: #fff;
+  border: 1px solid blue;
+  text-decoration: none;
+}
+.noContent {
+  color: #000 !important;
+  background-color: transparent !important;
+  pointer-events: none;
+}    
 </style>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -56,6 +97,11 @@
         <div class="row">
           <div class="col-md-6">
 
+              
+ <div class="container">
+  <div class="flex">             
+              
+             <div class="post">  
             <div class="card shadow">
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
@@ -72,6 +118,11 @@
                 <a href="#" class="card-link">Continue lendo...</a>
               </div>
             </div>
+                 
+      </div>  
+                 
+       <div class="post">           
+                 
             <div class="card shadow">
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
@@ -88,6 +139,10 @@
                 <a href="#" class="card-link">Continue lendo...</a>
               </div>
             </div>
+           
+           <div>
+            <div class="post">
+           
             <div class="card shadow">
               <div class="card-body">
                 <h5 class="card-title">Card title</h5>
@@ -106,6 +161,11 @@
               </div>
             </div>
 
+                
+<div> <a href="#" id="loadMore">Load More</a>
+</div>                
+                
+                
 <!--paginação-->
 <nav aria-label="...">
   <ul class="pagination pagination-sm justify-content-center ">
@@ -133,7 +193,19 @@
       </div>
 
 
-
+      <script>
+      $(document).ready(function(){
+  $(".post").slice(0, 4).show();
+  $("#loadMore").on("click", function(e){
+    e.preventDefault();
+    $(".post:hidden").slice(0, 4).slideDown();
+    if($(".post:hidden").length == 0) {
+      $("#loadMore").text("Acabou os Posts ").addClass("noContent");
+    }
+  });
+  
+})
+      </script>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://post5.github.io/a1/src/css/bootstrap.min.js"></script>
